@@ -15,4 +15,11 @@ class Controller {
         print('DocumentSnapshot added with ID: ${doc.id}'));
     // [END get_started_add_data_1]
   }
+
+  Future<void> update({required String color}) async {
+    final config = <String, dynamic>{
+      "colorHex": "${color}",
+    };
+    db.collection('config').doc('ciMcqcxitXeQFHzo3IDU').update(config);
+  }
 }

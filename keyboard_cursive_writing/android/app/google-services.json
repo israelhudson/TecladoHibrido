@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "381177781251",
+    "project_id": "keyboard-writing-project",
+    "storage_bucket": "keyboard-writing-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:381177781251:android:e354d4761839d189540236",
+        "android_client_info": {
+          "package_name": "com.example.keyboard_cursive_writing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "381177781251-1u4f2mqk7vtqqv8itn1m37e5rijr2tdg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAE5hLjvKy3HZI5yD65h4oVF7klIdSM2Dk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "381177781251-1u4f2mqk7vtqqv8itn1m37e5rijr2tdg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

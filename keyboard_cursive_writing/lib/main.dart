@@ -1,7 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:keyboard_cursive_writing/controller.dart';
 import 'package:keyboard_cursive_writing/keyboard_ui.dart';
 
-void main() => runApp(MyApp());
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -31,6 +42,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  late final Controller controller;
+
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  @override
+  void initState() {
+    super.initState();
+    controller = Controller(db);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +61,30 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream:
+                    FirebaseFirestore.instance.collection('config').snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                        itemCount: snapshot.data!.docs.length,
+                        itemBuilder: (context, index) {
+                          DocumentSnapshot doc = snapshot.data!.docs[index];
+                          return Text(doc['color']);
+                        });
+                  } else {
+                    return Text("No data");
+                  }
+                },
+              ),
+            ),
+            ElevatedButton(
+              child: const Text("Keyboard"),
+              onPressed: () {
+                controller.add();
+              },
+            ),
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: TextFormField(

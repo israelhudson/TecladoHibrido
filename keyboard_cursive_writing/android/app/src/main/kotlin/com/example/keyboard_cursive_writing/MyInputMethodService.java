@@ -57,7 +57,6 @@ public class MyInputMethodService extends InputMethodService implements Keyboard
                             }else{
                                 inputConnection.commitText(letter, 1);
                             }
-                            //reply.reply(EMPTY_MESSAGE);
                         }
                     });
 

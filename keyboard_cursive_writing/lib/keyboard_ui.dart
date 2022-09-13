@@ -20,32 +20,146 @@ class _KeyboardUiState extends State<KeyboardUi> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: double.infinity,
-            height: 20,
-            color: Colors.white10,
+      child: Container(
+        color: Colors.teal,
+        padding: EdgeInsets.all(2),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              height: 20,
+              color: Colors.white10,
+            ),
+            const Text('Keyboard UI Flutter'),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                itemViewKeyboard(value: "0"),
+                itemViewKeyboard(value: "1"),
+                itemViewKeyboard(value: "2"),
+                itemViewKeyboard(value: "3"),
+                itemViewKeyboard(value: "4"),
+                itemViewKeyboard(value: "5"),
+                itemViewKeyboard(value: "6"),
+                itemViewKeyboard(value: "7"),
+                itemViewKeyboard(value: "8"),
+                itemViewKeyboard(value: "9"),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                itemViewKeyboard(value: "q"),
+                itemViewKeyboard(value: "w"),
+                itemViewKeyboard(value: "e"),
+                itemViewKeyboard(value: "r"),
+                itemViewKeyboard(value: "t"),
+                itemViewKeyboard(value: "y"),
+                itemViewKeyboard(value: "u"),
+                itemViewKeyboard(value: "i"),
+                itemViewKeyboard(value: "o"),
+                itemViewKeyboard(value: "p"),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                itemViewKeyboard(value: "a"),
+                itemViewKeyboard(value: "s"),
+                itemViewKeyboard(value: "d"),
+                itemViewKeyboard(value: "f"),
+                itemViewKeyboard(value: "g"),
+                itemViewKeyboard(value: "h"),
+                itemViewKeyboard(value: "j"),
+                itemViewKeyboard(value: "k"),
+                itemViewKeyboard(value: "l"),
+              ],
+            ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                itemViewKeyboard(value: "z"),
+                itemViewKeyboard(value: "x"),
+                itemViewKeyboard(value: "c"),
+                itemViewKeyboard(value: "v"),
+                itemViewKeyboard(value: "b"),
+                itemViewKeyboard(value: "n"),
+                itemViewKeyboard(value: "m"),
+                itemIconKeyboard(value: "delete", icon: Icons.arrow_back),
+              ],
+            ),
+            InkWell(
+              onTap: () {
+                sendText(" ");
+              },
+              child: Card(
+                color: Colors.white70,
+                child: Container(
+                  width: 200,
+                  height: 35,
+                  color: Colors.transparent,
+                  padding: const EdgeInsets.all(0.5),
+                  alignment: Alignment.center,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget itemViewKeyboard({String value = ""}) {
+    return InkWell(
+      onTap: () {
+        sendText(value);
+      },
+      child: Card(
+        color: Colors.white70,
+        child: Container(
+          color: Colors.transparent,
+          padding: const EdgeInsets.all(0.5),
+          width: 30,
+          height: 40,
+          alignment: Alignment.center,
+          child: Text(
+            value,
+            style: const TextStyle(color: Colors.black, fontSize: 20),
           ),
-          const SizedBox(height: 10),
-          const Text('Keyboard UI'),
-          const SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () {
-              sendText("a");
-            },
-            child: const Text('a'),
+        ),
+      ),
+    );
+  }
+
+  Widget itemIconKeyboard({String value = "", IconData icon = Icons.ac_unit}) {
+    return InkWell(
+      onTap: () {
+        sendText(value);
+      },
+      child: Card(
+        color: Colors.white70,
+        child: Container(
+          color: Colors.transparent,
+          padding: const EdgeInsets.all(0.5),
+          width: 30,
+          height: 40,
+          alignment: Alignment.center,
+          child: Icon(
+            icon,
+            color: Colors.black,
           ),
-          ElevatedButton(
-            onPressed: () {
-              sendText("delete");
-            },
-            child: const Text('<-'),
-          ),
-        ],
+        ),
       ),
     );
   }

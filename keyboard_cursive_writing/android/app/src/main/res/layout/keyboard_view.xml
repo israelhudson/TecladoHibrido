@@ -2,17 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/keyboardViewLL"
     android:layout_width="match_parent"
-    android:layout_height="500dp">
+    android:layout_height="300dp">
 
     <io.flutter.embedding.android.FlutterView
-        android:animationCache="true"
         android:id="@+id/flutter_view"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginLeft="-3dp"
         android:layout_weight="1"
         android:animateLayoutChanges="true"
-        android:padding="10dp"
+        android:animationCache="true"
         android:scaleType="fitEnd" />
 
 </FrameLayout>

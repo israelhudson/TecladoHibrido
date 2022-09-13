@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:keyboard_cursive_writing/features/customize/controller/controller.dart';
+import 'package:keyboard_cursive_writing/features/keyboard/ui/keyboard_ui.dart';
 
 class CustomizePage extends StatefulWidget {
   const CustomizePage({Key? key}) : super(key: key);
@@ -56,13 +58,20 @@ class _CustomizePageState extends State<CustomizePage> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                      hintText: "Click aqui para testar o teclado"),
+              Visibility(
+                visible: !kIsWeb,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                        hintText: "Click aqui para testar o teclado"),
+                  ),
                 ),
               ),
+              SizedBox(
+                height: 50,
+              ),
+              const Visibility(visible: kIsWeb, child: KeyboardUi()),
             ],
           ),
         ),

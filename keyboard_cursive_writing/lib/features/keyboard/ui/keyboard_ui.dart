@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:keyboard_cursive_writing/controller.dart';
+import 'package:get_it/get_it.dart';
 
 class KeyboardUi extends StatefulWidget {
   const KeyboardUi({Key? key}) : super(key: key);
@@ -19,14 +19,7 @@ class _KeyboardUiState extends State<KeyboardUi> {
     _keyboardMessageChannel.send(text);
   }
 
-  late final Controller controller;
-
-  FirebaseFirestore db = FirebaseFirestore.instance;
-  @override
-  void initState() {
-    super.initState();
-    controller = Controller(db);
-  }
+  final db = GetIt.I<FirebaseFirestore>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +29,7 @@ class _KeyboardUiState extends State<KeyboardUi> {
       ),
       child: Material(
         child: StreamBuilder<QuerySnapshot>(
-            stream: controller.db.collection('config').snapshots(),
+            stream: db.collection('config').snapshots(),
             builder: (context, snapshot) {
               late Color bgColor;
               if (snapshot.hasData) {

@@ -1,5 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:keyboard_cursive_writing/controller.dart';
 
 class CustomizePage extends StatefulWidget {
@@ -10,14 +10,7 @@ class CustomizePage extends StatefulWidget {
 }
 
 class _CustomizePageState extends State<CustomizePage> {
-  late final Controller controller;
-
-  FirebaseFirestore db = FirebaseFirestore.instance;
-  @override
-  void initState() {
-    super.initState();
-    controller = Controller(db);
-  }
+  final controller = GetIt.I<Controller>();
 
   @override
   Widget build(BuildContext context) {

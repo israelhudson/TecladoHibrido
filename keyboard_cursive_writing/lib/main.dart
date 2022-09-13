@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:keyboard_cursive_writing/features/customize/page/customize_page.dart';
 import 'package:keyboard_cursive_writing/features/keyboard/ui/keyboard_ui.dart';
 
+import 'core/binding/bindings.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -10,7 +11,9 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(MyApp());
+
+  Bindings.initilizeBinding();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Flutter Keyboard App',
         theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        //home: const MyHomePage(title: 'Flutter Demo Home Page'),
         initialRoute: "/customize",
         routes: {
           '/keyboard': (context) => const KeyboardUi(),

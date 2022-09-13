@@ -23,126 +23,120 @@ class _KeyboardUiState extends State<KeyboardUi> {
 
   @override
   Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(
-        primarySwatch: Colors.grey,
-      ),
-      child: Material(
-        child: StreamBuilder<QuerySnapshot>(
-            stream: db.collection('config').snapshots(),
-            builder: (context, snapshot) {
-              late Color bgColor;
-              if (snapshot.hasData) {
-                DocumentSnapshot doc = snapshot.data!.docs[0];
-                if (doc['colorHex'] != null) {
-                  bgColor = Color(int.parse(doc['colorHex']));
-                } else {
-                  bgColor = Colors.teal;
-                }
+    return Material(
+      child: StreamBuilder<QuerySnapshot>(
+          stream: db.collection('config').snapshots(),
+          builder: (context, snapshot) {
+            late Color bgColor;
+            if (snapshot.hasData) {
+              DocumentSnapshot doc = snapshot.data!.docs[0];
+              if (doc['colorHex'] != null) {
+                bgColor = Color(int.parse(doc['colorHex']));
               } else {
                 bgColor = Colors.teal;
               }
+            } else {
+              bgColor = Colors.teal;
+            }
 
-              return Container(
-                color: bgColor,
-                padding: const EdgeInsets.all(2),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 20,
-                      color: Colors.white10,
-                    ),
-                    const Text('Keyboard UI Flutter'),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        itemViewKeyboard(value: "0"),
-                        itemViewKeyboard(value: "1"),
-                        itemViewKeyboard(value: "2"),
-                        itemViewKeyboard(value: "3"),
-                        itemViewKeyboard(value: "4"),
-                        itemViewKeyboard(value: "5"),
-                        itemViewKeyboard(value: "6"),
-                        itemViewKeyboard(value: "7"),
-                        itemViewKeyboard(value: "8"),
-                        itemViewKeyboard(value: "9"),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        itemViewKeyboard(value: "q"),
-                        itemViewKeyboard(value: "w"),
-                        itemViewKeyboard(value: "e"),
-                        itemViewKeyboard(value: "r"),
-                        itemViewKeyboard(value: "t"),
-                        itemViewKeyboard(value: "y"),
-                        itemViewKeyboard(value: "u"),
-                        itemViewKeyboard(value: "i"),
-                        itemViewKeyboard(value: "o"),
-                        itemViewKeyboard(value: "p"),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        itemViewKeyboard(value: "a"),
-                        itemViewKeyboard(value: "s"),
-                        itemViewKeyboard(value: "d"),
-                        itemViewKeyboard(value: "f"),
-                        itemViewKeyboard(value: "g"),
-                        itemViewKeyboard(value: "h"),
-                        itemViewKeyboard(value: "j"),
-                        itemViewKeyboard(value: "k"),
-                        itemViewKeyboard(value: "l"),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        itemViewKeyboard(value: "z"),
-                        itemViewKeyboard(value: "x"),
-                        itemViewKeyboard(value: "c"),
-                        itemViewKeyboard(value: "v"),
-                        itemViewKeyboard(value: "b"),
-                        itemViewKeyboard(value: "n"),
-                        itemViewKeyboard(value: "m"),
-                        itemIconKeyboard(
-                            value: "delete", icon: Icons.arrow_back),
-                      ],
-                    ),
-                    InkWell(
-                      onTap: () {
-                        sendText(" ");
-                      },
-                      child: Card(
-                        color: Colors.white70,
-                        child: Container(
-                          width: 200,
-                          height: 35,
-                          color: Colors.transparent,
-                          padding: const EdgeInsets.all(0.5),
-                          alignment: Alignment.center,
-                        ),
+            return Container(
+              color: bgColor,
+              padding: const EdgeInsets.all(2),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 20,
+                    color: Colors.white10,
+                  ),
+                  const Text('Keyboard UI Flutter'),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      itemViewKeyboard(value: "0"),
+                      itemViewKeyboard(value: "1"),
+                      itemViewKeyboard(value: "2"),
+                      itemViewKeyboard(value: "3"),
+                      itemViewKeyboard(value: "4"),
+                      itemViewKeyboard(value: "5"),
+                      itemViewKeyboard(value: "6"),
+                      itemViewKeyboard(value: "7"),
+                      itemViewKeyboard(value: "8"),
+                      itemViewKeyboard(value: "9"),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      itemViewKeyboard(value: "q"),
+                      itemViewKeyboard(value: "w"),
+                      itemViewKeyboard(value: "e"),
+                      itemViewKeyboard(value: "r"),
+                      itemViewKeyboard(value: "t"),
+                      itemViewKeyboard(value: "y"),
+                      itemViewKeyboard(value: "u"),
+                      itemViewKeyboard(value: "i"),
+                      itemViewKeyboard(value: "o"),
+                      itemViewKeyboard(value: "p"),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      itemViewKeyboard(value: "a"),
+                      itemViewKeyboard(value: "s"),
+                      itemViewKeyboard(value: "d"),
+                      itemViewKeyboard(value: "f"),
+                      itemViewKeyboard(value: "g"),
+                      itemViewKeyboard(value: "h"),
+                      itemViewKeyboard(value: "j"),
+                      itemViewKeyboard(value: "k"),
+                      itemViewKeyboard(value: "l"),
+                    ],
+                  ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      itemViewKeyboard(value: "z"),
+                      itemViewKeyboard(value: "x"),
+                      itemViewKeyboard(value: "c"),
+                      itemViewKeyboard(value: "v"),
+                      itemViewKeyboard(value: "b"),
+                      itemViewKeyboard(value: "n"),
+                      itemViewKeyboard(value: "m"),
+                      itemIconKeyboard(value: "delete", icon: Icons.arrow_back),
+                    ],
+                  ),
+                  InkWell(
+                    onTap: () {
+                      sendText(" ");
+                    },
+                    child: Card(
+                      color: Colors.white70,
+                      child: Container(
+                        width: 200,
+                        height: 35,
+                        color: Colors.transparent,
+                        padding: const EdgeInsets.all(0.5),
+                        alignment: Alignment.center,
                       ),
                     ),
-                  ],
-                ),
-              );
-            }),
-      ),
+                  ),
+                ],
+              ),
+            );
+          }),
     );
   }
 
